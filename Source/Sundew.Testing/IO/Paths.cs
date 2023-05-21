@@ -92,8 +92,6 @@ public sealed record Paths(params string[] FileSystemPaths)
 
     private static Exception CreatePathNotFoundException(string path)
     {
-        return Path.HasExtension(path)
-            ? new FileNotFoundException($"File from the path: {path} was not found", path)
-            : new DirectoryNotFoundException($"Directory from the path: {path} was not found");
+        return new PathNotFoundException($"The path: {path} was not found", path);
     }
 }
