@@ -19,22 +19,27 @@ using Sundew.Testing.IO;
 public sealed class CSharpProject : IProject
 {
     private const string SearchPattern = "*.cs";
-    private readonly string projectName;
-    private readonly string basePath;
-    private readonly Paths additionalPaths;
-    private readonly string[] excludePaths;
 
-    public CSharpProject(string basePath, Paths? additionalPaths, Paths? excludePaths, References? references)
+    public CSharpProject(string path, Paths? additionalPaths = null, Paths? excludePaths = null, References? references = null)
     {
         this.References = references ?? new References();
-        this.basePath = Path.GetFullPath(basePath);
-        this.additionalPaths = additionalPaths ?? new Paths();
-        this.projectName = Path.GetFileName(basePath);
+        this.BasePath = File.Exists(path) ? Directory.GetParent(Path.GetFullPath(path)).FullName : Path.GetFullPath(path);
+        this.AdditionalPaths = additionalPaths ?? new Paths();
+        this.ProjectName = Path.GetFileNameWithoutExtension(path);
         excludePaths ??= new Paths();
-        this.excludePaths = Array.ConvertAll(excludePaths.FileSystemPaths, input => Path.GetFullPath(Path.Combine(basePath, input))).Concat(this.additionalPaths.FileSystemPaths.SelectMany(s => excludePaths.FileSystemPaths, (s, s1) => Path.GetFullPath(Path.Combine(s, s1)))).ToArray();
+        this.ExcludePaths = new Paths(Array.ConvertAll(excludePaths.FileSystemPaths, input => Path.GetFullPath(Path.Combine(path, input))).Concat(this.AdditionalPaths.FileSystemPaths.SelectMany(s => excludePaths.FileSystemPaths, (s, s1) => Path.GetFullPath(Path.Combine(s, s1)))).ToArray());
     }
 
+
+    public string BasePath { get; }
+
+    public string ProjectName { get; }
+
+    public Paths AdditionalPaths { get; }
+
     public References References { get; }
+    
+    public Paths ExcludePaths { get; }
 
     public Compilation Compile()
     {
@@ -50,7 +55,7 @@ public sealed class CSharpProject : IProject
         }
 
         return CSharpCompilation.Create(
-            this.projectName,
+            this.ProjectName,
             this.GetFiles().Select(x => CSharpSyntaxTree.ParseText(SourceText.From(File.ReadAllText(x)), null, x)),
             references,
             new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary, nullableContextOptions: NullableContextOptions.Enable));
@@ -58,11 +63,11 @@ public sealed class CSharpProject : IProject
 
     public IEnumerable<string> GetFiles()
     {
-        return Directory.EnumerateFiles(this.basePath, SearchPattern, SearchOption.AllDirectories).Concat(this.additionalPaths.FileSystemPaths.SelectMany(x => Directory.EnumerateFiles(x, SearchPattern, SearchOption.AllDirectories))).Where(this.IsNotExcluded);
+        return System.IO.Directory.EnumerateFiles(this.BasePath, SearchPattern, SearchOption.AllDirectories).Concat(this.AdditionalPaths.FileSystemPaths.SelectMany(x => System.IO.Directory.EnumerateFiles(x, SearchPattern, SearchOption.AllDirectories))).Where(this.IsNotExcluded);
     }
 
     private bool IsNotExcluded(string path)
     {
-        return !this.excludePaths.Any(path.StartsWith);
+        return !this.ExcludePaths.FileSystemPaths.Any(path.StartsWith);
     }
 }
