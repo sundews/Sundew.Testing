@@ -39,10 +39,8 @@ public static class BenchmarkReportToPointConverter
             return Item.Fail(report.ExecuteResults);
         });
 
-        return allOrFailed switch
-        {
-            All<(Summary summary, BenchmarkReport report), PointData, IReadOnlyList<ExecuteResult>> pointDatas => R.Success<IEnumerable<PointData>>(pointDatas.Items),
-            Failed<(Summary summary, BenchmarkReport report), PointData, IReadOnlyList<ExecuteResult>> failedItems => R.Error(failedItems.GetErrors().SelectMany(x => x)),
-        };
+        return allOrFailed.With<IEnumerable<PointData>, IEnumerable<ExecuteResult>>(
+            x => x.Items,
+            x => x.GetErrors().SelectMany(x => x));
     }
 }
