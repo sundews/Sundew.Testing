@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="CSharpProject.cs" company="Hukano">
-// Copyright (c) Hukano. All rights reserved.
+// <copyright file="CSharpProject.cs" company="Sundews">
+// Copyright (c) Sundews. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
@@ -14,7 +14,7 @@ using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.Text;
-using Sundew.Testing.IO;
+using Sundew.Base.IO;
 
 public sealed class CSharpProject : IProject
 {
@@ -26,8 +26,8 @@ public sealed class CSharpProject : IProject
         this.BasePath = File.Exists(path) ? Directory.GetParent(Path.GetFullPath(path)).FullName : Path.GetFullPath(path);
         this.AdditionalPaths = additionalPaths ?? new Paths();
         this.ProjectName = Path.GetFileNameWithoutExtension(path);
-        excludePaths ??= new Paths();
-        this.ExcludePaths = new Paths(Array.ConvertAll(excludePaths.FileSystemPaths, input => Path.GetFullPath(Path.Combine(path, input))).Concat(this.AdditionalPaths.FileSystemPaths.SelectMany(s => excludePaths.FileSystemPaths, (s, s1) => Path.GetFullPath(Path.Combine(s, s1)))).ToArray());
+        var actualExcludedPaths = excludePaths ?? new Paths();
+        this.ExcludePaths = new Paths(Array.ConvertAll(actualExcludedPaths.FileSystemPaths, input => Path.GetFullPath(Path.Combine(path, input))).Concat(this.AdditionalPaths.FileSystemPaths.SelectMany(s => actualExcludedPaths.FileSystemPaths, (s, s1) => Path.GetFullPath(Path.Combine(s, s1)))).ToArray());
     }
 
 

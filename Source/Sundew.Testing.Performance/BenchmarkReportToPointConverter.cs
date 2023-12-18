@@ -1,4 +1,11 @@
-﻿namespace Sundew.Testing.Performance;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="BenchmarkReportToPointConverter.cs" company="Sundews">
+// Copyright (c) Sundews. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
+// </copyright>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Sundew.Testing.Performance;
 
 using System;
 using System.Collections.Generic;
@@ -7,8 +14,8 @@ using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Toolchains.Results;
 using InfluxDB.Client.Api.Domain;
 using InfluxDB.Client.Writes;
-using Sundew.Base.Collections;
-using Sundew.Base.Primitives.Computation;
+using Sundew.Base;
+using Sundew.Base.Collections.Linq;
 
 public static class BenchmarkReportToPointConverter
 {
