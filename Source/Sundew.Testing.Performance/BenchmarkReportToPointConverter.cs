@@ -39,6 +39,7 @@ public static class BenchmarkReportToPointConverter
                 point.Field("Mean", report.ResultStatistics!.Mean)
                     .Field("StdDev", report.ResultStatistics.StandardDeviation)
                     .Field("StdErr", report.ResultStatistics.StandardError)
+                    
                     .Timestamp(dateTime, WritePrecision.Ns);
                 return Item.Pass<PointData, IReadOnlyList<ExecuteResult>>(point);
             }
