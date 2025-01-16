@@ -7,15 +7,15 @@
 
 namespace Sundew.Testing.Performance;
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Toolchains.Results;
 using InfluxDB.Client.Api.Domain;
 using InfluxDB.Client.Writes;
 using Sundew.Base;
 using Sundew.Base.Collections.Linq;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 public static class BenchmarkReportToPointConverter
 {
@@ -39,7 +39,7 @@ public static class BenchmarkReportToPointConverter
                 point.Field("Mean", report.ResultStatistics!.Mean)
                     .Field("StdDev", report.ResultStatistics.StandardDeviation)
                     .Field("StdErr", report.ResultStatistics.StandardError)
-                    
+
                     .Timestamp(dateTime, WritePrecision.Ns);
                 return Item.Pass<PointData, IReadOnlyList<ExecuteResult>>(point);
             }
@@ -47,7 +47,7 @@ public static class BenchmarkReportToPointConverter
             return Item.Fail(report.ExecuteResults);
         });
 
-        return allOrFailed.With<IEnumerable<PointData>, IEnumerable<ExecuteResult>>(
+        return allOrFailed.Map<IEnumerable<PointData>, IEnumerable<ExecuteResult>>(
             x => x.Items,
             x => x.GetErrors().SelectMany(x => x));
     }
