@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Description>Contains concepts useful for testing analyzers and code generators.</Description>
   </PropertyGroup>
 
   <ItemGroup>
