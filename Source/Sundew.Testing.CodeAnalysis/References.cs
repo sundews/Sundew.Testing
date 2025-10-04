@@ -7,4 +7,8 @@
 
 namespace Sundew.Testing.CodeAnalysis;
 
+/// <summary>
+/// Represents an immutable collection of references used within the application.
+/// </summary>
+/// <param name="ReferenceList">An array of <see cref="IReference"/> objects to include in the collection. Cannot be null.</param>
 public sealed record References(params IReference[] ReferenceList);

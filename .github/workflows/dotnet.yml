@@ -16,7 +16,7 @@ jobs:
     name: .NET
     runs-on: ubuntu-latest
     env:
-      solutionPath: ./Source/Sundew.Testing.sln
+      solutionPath: ./Source/Sundew.Testing.slnx
       versioningProjectPath: ./Source/Sundew.Testing/Sundew.Testing.csproj
       repository: 'https://sundew-dev:${{ secrets.SUNDEW_DEV_TOKEN }}@github.com/sundews/Sundew.Testing.git'
       source: 'https://api.nuget.org/v3/index.json'
