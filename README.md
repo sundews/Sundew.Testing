@@ -2,7 +2,7 @@
 
 Sundew.Testing - Reusable concepts for testing
 
-* Paths - represents file system paths and helps finding absolute paths from relative ones.
+* TemporarilySet - A helper for temporarily setting values in tests
 
 Sundew.Testing.Performance
 
