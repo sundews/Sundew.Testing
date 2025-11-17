@@ -10,9 +10,9 @@
     <PackageVersion Include="Microsoft.SourceLink.GitHub" Version="8.0.0" />
     <PackageVersion Include="PolySharp" Version="1.15.0" />
     <PackageVersion Include="StyleCop.Analyzers.Unstable" Version="1.2.0.556" />
-    <PackageVersion Include="Sundew.Base.Collections" Version="15.0.0-u20251108-214246-ci" />
-    <PackageVersion Include="Sundew.Base.IO" Version="15.0.0-u20251108-214246-ci" />
-    <PackageVersion Include="Sundew.Base.Primitives" Version="15.0.0-u20251108-214246-ci" />
-    <PackageVersion Include="Sundew.Packaging.Publish" Version="10.0.10-u20250427-204945-ci" />
+    <PackageVersion Include="Sundew.Base.Collections" Version="15.0.0" />
+    <PackageVersion Include="Sundew.Base.IO" Version="15.0.0" />
+    <PackageVersion Include="Sundew.Base.Primitives" Version="15.0.0" />
+    <PackageVersion Include="Sundew.Packaging.Publish" Version="10.0.10" />
   </ItemGroup>
 </Project>
