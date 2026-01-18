@@ -27,7 +27,8 @@ public sealed class CSharpProject : IProject
     private const string SearchPattern = "*.cs";
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="CSharpProject"/> class. </summary>
+    /// Initializes a new instance of the <see cref="CSharpProject"/> class.
+    /// </summary>
     /// <param name="path">The file path to the C# project file. If the file exists, its directory is used as the base path; otherwise, the
     /// provided path is treated as the base path.</param>
     /// <param name="additionalPaths">An optional collection of additional file system paths to include in the project. If null, an empty collection
