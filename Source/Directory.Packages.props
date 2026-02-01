@@ -14,5 +14,6 @@
     <PackageVersion Include="Sundew.Base.IO" Version="16.0.0-u20260131-215542-ci" />
     <PackageVersion Include="Sundew.Base.Primitives" Version="16.0.0-u20260131-215542-ci" />
     <PackageVersion Include="Sundew.Packaging.Publish" Version="10.0.12" />
+    <PackageVersion Include="TUnit" Version="1.12.102" />
   </ItemGroup>
 </Project>
