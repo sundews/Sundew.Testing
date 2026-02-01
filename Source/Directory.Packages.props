@@ -5,14 +5,14 @@
   <ItemGroup>
     <PackageVersion Include="BenchmarkDotNet" Version="0.15.3" />
     <PackageVersion Include="InfluxDB.Client" Version="4.18.0" />
-    <PackageVersion Include="Microsoft.CodeAnalysis" Version="4.3.1" />
-    <PackageVersion Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="9.0.0" />
-    <PackageVersion Include="Microsoft.SourceLink.GitHub" Version="8.0.0" />
+    <PackageVersion Include="Microsoft.CodeAnalysis" Version="4.12.0" />
+    <PackageVersion Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="10.0.102" />
+    <PackageVersion Include="Microsoft.SourceLink.GitHub" Version="10.0.102" />
     <PackageVersion Include="PolySharp" Version="1.15.0" />
     <PackageVersion Include="StyleCop.Analyzers.Unstable" Version="1.2.0.556" />
-    <PackageVersion Include="Sundew.Base.Collections" Version="15.0.1" />
-    <PackageVersion Include="Sundew.Base.IO" Version="15.0.1" />
-    <PackageVersion Include="Sundew.Base.Primitives" Version="15.0.1" />
+    <PackageVersion Include="Sundew.Base.Collections" Version="16.0.0-u20260131-215542-ci" />
+    <PackageVersion Include="Sundew.Base.IO" Version="16.0.0-u20260131-215542-ci" />
+    <PackageVersion Include="Sundew.Base.Primitives" Version="16.0.0-u20260131-215542-ci" />
     <PackageVersion Include="Sundew.Packaging.Publish" Version="10.0.12" />
   </ItemGroup>
 </Project>
